@@ -13,6 +13,6 @@
 
 # Others
 1. [datasets](https://paperswithcode.com/datasets?mod=hyperspectral-images)
-3. [introduction](http://richardis.univ-paris1.fr/hypermaryem/hyprspec.pdf)
+3. [introduction to hyperspectral image](http://richardis.univ-paris1.fr/hypermaryem/hyprspec.pdf)
 4. [hyperspectral image processing methods](https://link.springer.com/chapter/10.1007/978-1-4939-2836-1_4)
 
