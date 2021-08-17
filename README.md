@@ -12,7 +12,7 @@
 2. [https://github.com/jingge326/DeHIC/tree/master/code]
 
 # Others
-1. (datasets) [https://paperswithcode.com/datasets?mod=hyperspectral-images]
-2. (studying materials) [http://richardis.univ-paris1.fr/hypermaryem/hyprspec.pdf]
-3. (studying materials) [https://link.springer.com/chapter/10.1007/978-1-4939-2836-1_4]
+1. (datasets)[https://paperswithcode.com/datasets?mod=hyperspectral-images]
+2. (studying materials)[http://richardis.univ-paris1.fr/hypermaryem/hyprspec.pdf]
+3. (studying materials)[https://link.springer.com/chapter/10.1007/978-1-4939-2836-1_4]
 
