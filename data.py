@@ -5,7 +5,7 @@ from operator import truediv
 import scipy.io as sio
 from sklearn.decomposition import PCA
 from sklearn.model_selection import train_test_split
-from keras.utils import np_utils
+#from keras.utils import np_utils
 from sklearn.preprocessing import minmax_scale
 
 def loadata(name, compressed):
@@ -96,6 +96,11 @@ def get_content_pixels(x, y):
     x_con = x_mat[ind]
     return x_con, y_con
 
+def get_all_pixels(x, y):
+    y_vec = y.reshape(-1)
+    x_mat = x.reshape(x.shape[0]*x.shape[1], x.shape[2]) 
+    return x_mat, y_vec
+
 def get_background_pixels(x, y):
     y_vec = y.reshape(-1)
     x_mat = x.reshape(x.shape[0]*x.shape[1], x.shape[2])
@@ -105,13 +110,13 @@ def get_background_pixels(x, y):
     x_background = x_mat[ind]
     return x_background, y_background
 
-
-
-
 if __name__ == "__main__":
-    dat, label = loadata('IP', False)
-    patchdata, patchlabel = createImageCubes(dat, label) 
-    binlabel = np_utils.to_categorical(patchlabel)
-    print(patchdata.shape)
-    print(patchlabel.shape)
-    print(binlabel.shape)
+    data, label = loadata('IP', False)
+    n_row, n_column, n_band = data.shape
+    norm_data = minmax_scale(data.reshape(n_row * n_column, n_band)).reshape((n_row, n_column, n_band))
+    pixel_data, pixel_label = get_content_pixels(norm_data, label) 
+    patch_data, patch_label = createImageCubes(norm_data, label) 
+    #onehot_label = np_utils.to_categorical(patch_label)
+    print(patch_data.shape)
+    print(patch_label.shape)
+    print(pixel_data.shape)
