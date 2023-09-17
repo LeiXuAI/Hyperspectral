@@ -1,0 +1,222 @@
+2023-09-16 22:40:40.361523: I tensorflow/core/util/port.cc:110] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2023-09-16 22:40:40.831903: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2023-09-16 22:40:44.472675: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+Number of parameters: 424128
+Epoch 1
+Training Loss: 2.0296569358266323
+Selected bands: [  9  10  12  27  32  79  97 104 106 114 124 127 136 148 160]
+penalty: 1.05646550655365
+
+Epoch 2
+Training Loss: 0.0014314788358028138
+Selected bands: [  8  24  31  62  75  77  93  99 112 122 127 139 142 155 166]
+penalty: 0.0215330608189106
+
+Epoch 3
+Training Loss: 0.00023487088326368274
+Selected bands: [  7  37  45  46  53  65  70  88  95 100 114 118 146 147 152]
+penalty: 0.0021480186842381954
+
+Epoch 4
+Training Loss: 8.031740952023544e-05
+Selected bands: [ 11  42  47  48  49  58 100 116 119 121 131 150 167 169 172]
+penalty: 0.00012586057709995657
+
+Epoch 5
+Training Loss: 4.6546533116865437e-05
+Selected bands: [  8  43  48  58  77  91  95 108 116 119 123 132 159 167 169]
+penalty: 2.9069162337691523e-05
+
+Epoch 6
+Training Loss: 2.7757531629314815e-05
+Selected bands: [  8  14  43  52  58  67  74  76  91  95 107 116 121 167 169]
+penalty: 4.386223295682612e-08
+
+Epoch 7
+Training Loss: 2.1890815722428012e-05
+Selected bands: [  3   4   8  48  52  58  64  80  91 116 121 158 167 169 171]
+penalty: 2.9596735728887325e-08
+
+Epoch 8
+Training Loss: 1.4243114851234999e-05
+Selected bands: [  8   9  14  20  52  58  64  70  97 116 136 153 167 169 171]
+penalty: 1.0894093520619208e-06
+
+Epoch 9
+Training Loss: 1.899434434403049e-05
+Selected bands: [  9  14  52  58  64  69  88 108 109 116 121 159 167 169 171]
+penalty: 3.1163965722239007e-13
+
+Epoch 10
+Training Loss: 8.703326318758112e-06
+Selected bands: [  5   9  14  21  52  53  58  69 115 116 121 152 153 159 167]
+penalty: 7.736150430620538e-17
+
+Epoch 11
+Training Loss: 1.1583911581957418e-05
+Selected bands: [  5   9  52  69  76 108 116 121 138 152 153 159 160 167 171]
+penalty: 5.200685102419429e-19
+
+Epoch 12
+Training Loss: 8.388309744381392e-06
+Selected bands: [  9  19  37  69 100 116 121 136 138 153 159 160 167 169 171]
+penalty: 2.1892596684767448e-20
+
+Epoch 13
+Training Loss: 7.860063673709972e-06
+Selected bands: [  9  19  52  66  69 116 121 136 138 153 159 160 167 169 171]
+penalty: 4.268274350217672e-28
+
+Epoch 14
+Training Loss: 1.8579725705183094e-05
+Selected bands: [  8   9  14  47  66  69  76 116 121 136 138 153 159 160 167]
+penalty: 6.733859355493402e-32
+
+Epoch 15
+Training Loss: 1.6342364700131938e-05
+Selected bands: [  8   9  47  58  66  69  76 116 121 136 138 159 160 167 174]
+penalty: 5.899487592399763e-35
+
+Epoch 16
+Training Loss: 1.0270666134384001e-05
+Selected bands: [  8   9  47  52  66  69  76  93 116 121 136 138 160 167 174]
+penalty: 0.0
+
+Epoch 17
+Training Loss: 1.3173334051127077e-05
+Selected bands: [  8   9  35  39  47  52  66  69  93 116 121 136 138 167 174]
+penalty: 0.0
+
+Epoch 18
+Training Loss: 1.3279941215141017e-05
+Selected bands: [  8   9  39  47  66  69  72  76  93 116 121 136 138 167 169]
+penalty: 0.0
+
+Epoch 19
+Training Loss: 7.410313722213755e-06
+Selected bands: [  8   9  39  47  66  69  72  76 109 116 121 136 138 167 169]
+penalty: 0.0
+
+Epoch 20
+Training Loss: 5.7036776048054e-06
+Selected bands: [  8   9  39  47  66  69  72  76 109 116 121 136 138 167 169]
+penalty: 0.0
+
+Epoch 21
+Training Loss: 9.925430182648415e-06
+Selected bands: [  8   9  14  47  66  69  72  76 109 116 136 138 159 167 169]
+penalty: 0.0
+
+Epoch 22
+Training Loss: 8.618934096185375e-06
+Selected bands: [  8   9  14  47  66  69  72  76 109 116 136 138 159 167 169]
+penalty: 0.0
+
+Epoch 23
+Training Loss: 1.1513342471330555e-05
+Selected bands: [  8   9  47  52  66  69  72  76 109 116 136 138 159 167 169]
+penalty: 0.0
+
+Epoch 24
+Training Loss: 1.2249365938854855e-05
+Selected bands: [  8   9  37  47  52  66  69  72  76 109 116 136 159 167 169]
+penalty: 0.0
+
+Epoch 25
+Training Loss: 1.0647012152555365e-05
+Selected bands: [  8   9  47  52  66  69  72  76  90 109 116 136 159 167 169]
+penalty: 0.0
+
+Epoch 26
+Training Loss: 7.676070026411618e-06
+Selected bands: [  8   9  47  52  66  69  72  76  90 109 116 136 159 167 169]
+penalty: 0.0
+
+Epoch 27
+Training Loss: 1.2463337957205673e-05
+Selected bands: [  8   9  47  52  66  69  72  76  77  90 109 116 136 159 167]
+penalty: 0.0
+
+Epoch 28
+Training Loss: 7.676086113837578e-06
+Selected bands: [  8   9  47  52  66  69  72  76  77  90 109 116 136 159 167]
+penalty: 0.0
+
+Epoch 29
+Training Loss: 1.0564289047641037e-05
+Selected bands: [  8   9  47  52  66  69  72  76  77  90 109 116 136 159 167]
+penalty: 0.0
+
+Epoch 30
+Training Loss: 1.729302297394218e-05
+Selected bands: [  8   9  47  52  57  69  72  76  77  90 109 116 136 159 167]
+penalty: 0.0
+
+Epoch 31
+Training Loss: 6.716424414469199e-06
+Selected bands: [  8   9  47  52  57  69  72  76  77  90 109 116 136 159 167]
+penalty: 0.0
+
+Epoch 32
+Training Loss: 6.722637664939767e-06
+Selected bands: [  8   9  47  52  57  69  72  76  77  90 109 116 136 159 167]
+penalty: 0.0
+
+Epoch 33
+Training Loss: 7.676069980168933e-06
+Selected bands: [  8   9  47  52  57  69  72  76  77  90 109 116 136 159 167]
+penalty: 0.0
+
+Epoch 34
+Training Loss: 9.820209119943129e-06
+Selected bands: [  8   9  47  52  57  69  72  76  77  90 109 116 136 159 167]
+penalty: 0.0
+
+Epoch 35
+Training Loss: 1.0535573776243357e-05
+Selected bands: [  8   9  47  52  57  69  72  76  77  90 109 116 136 159 167]
+penalty: 0.0
+
+Epoch 36
+Training Loss: 4.7975437477492114e-06
+Selected bands: [  8   9  47  52  57  69  72  76  77  90 109 116 136 159 167]
+penalty: 0.0
+
+Epoch 37
+Training Loss: 1.1514104714817919e-05
+Selected bands: [  8   9  47  52  57  69  72  76  77  90 109 116 136 159 167]
+penalty: 0.0
+
+Epoch 38
+Training Loss: 8.63557858728846e-06
+Selected bands: [  8   9  47  52  57  69  72  76  77  90 109 116 136 159 167]
+penalty: 0.0
+
+Epoch 39
+Training Loss: 8.635578577101996e-06
+Selected bands: [  8   9  47  52  57  69  72  76  77  90 109 116 136 159 167]
+penalty: 0.0
+
+Epoch 40
+Training Loss: 1.2473613414142432e-05
+Selected bands: [  8   9  47  52  57  69  72  76  77  90 109 116 136 159 167]
+penalty: 0.0
+
+Dataset: KSC. The learning rate is: 0.001. hidden dim is: [256, 256]. The result is: {'knn': {'ca': array([[9.029e+01, 7.482e+01, 7.963e+01, 3.357e+01, 2.590e+01, 2.690e+01,
+        4.076e+01, 7.469e+01, 8.829e+01, 7.848e+01, 9.177e+01, 8.168e+01,
+        9.989e+01],
+       [1.790e+00, 3.950e+00, 9.110e+00, 8.880e+00, 6.360e+00, 3.580e+00,
+        1.484e+01, 2.470e+00, 2.460e+00, 9.390e+00, 1.300e+00, 2.440e+00,
+        4.000e-02]]), 'oa': array([68.2 ,  1.53]), 'aa': array([79.09,  0.55]), 'kappa': array([76.67,  0.61])}, 'svm': {'ca': array([[9.232e+01, 7.782e+01, 7.992e+01, 5.046e+01, 4.862e+01, 4.844e+01,
+        7.757e+01, 8.871e+01, 9.477e+01, 9.733e+01, 9.753e+01, 8.701e+01,
+        9.993e+01],
+       [2.740e+00, 5.680e+00, 5.920e+00, 8.730e+00, 5.800e+00, 5.020e+00,
+        8.350e+00, 2.370e+00, 2.220e+00, 3.840e+00, 1.120e+00, 1.930e+00,
+        6.000e-02]]), 'oa': array([80.03,  0.72]), 'aa': array([87.01,  0.65]), 'kappa': array([85.53,  0.72])}}.
+Traceback (most recent call last):
+  File "/usr/local/bin/jobinfo.py", line 14, in <module>
+    gpu_stats = getstats(sys.argv[1])
+  File "/usr/local/bin/jobinfo.py", line 10, in getstats
+    with open(fname) as stats_file:
+IOError: [Errno 2] No such file or directory: '/run/gpustats.json'
