@@ -1,7 +1,6 @@
 import numpy as np
 from data import loadata, get_content_pixels, createImageCubes, get_all_pixels
 from concreteVAE import ConcreteVAE
-import tensorflow as tf
 import argparse
 from sklearn.preprocessing import minmax_scale
 import numpy as np
@@ -20,19 +19,19 @@ writer = SummaryWriter()
 
 def parse_args_and_config():
     parser = argparse.ArgumentParser(description=globals()["__doc__"])
-    parser.add_argument("--seed", type=int, default=110, help="Random seed")
+    parser.add_argument("--seed", type=int, default=100, help="Random seed")
     parser.add_argument("--data_type", type=str, default="pixel", help="input data type is either pixel or window ")
     parser.add_argument("--optimizer", type=str, default="Adam", help="the type of optimizer")
-    parser.add_argument("--dataset", type=str, default="SA", help="IP, SA, PU, KSC")
+    parser.add_argument("--dataset", type=str, default="IP", help="IP, SA, PU, KSC")
     parser.add_argument("--model", type=str, default="concreteVAE", help="models")
     parser.add_argument("--batch_size", type=int, default=1, help="batch size")
     parser.add_argument("--lr", type=float, default=0.001, help="learning rate")
     parser.add_argument("--start_temperature", type=float, default=1.0, help="start temperature")
     parser.add_argument("--end_temperature", type=float, default=0.001, help="end temperature") 
-    parser.add_argument("--input_dim", type=int, default=204, help="number of input bands, KSC:176, PU:103, SA:204, IP:200")
-    parser.add_argument("--output_dim", type=int, default=204, help="number of output bands for decoder")
+    parser.add_argument("--input_dim", type=int, default=200, help="number of input bands, KSC:176, PU:103, SA:204, IP:200")
+    parser.add_argument("--output_dim", type=int, default=200, help="number of output bands for decoder")
     parser.add_argument("--hidden_dim", type=int, default=[256, 256], help="dimension number of hidden layers")
-    parser.add_argument("--selected_num", type=int, default=20, help="number of selected bands")
+    parser.add_argument("--selected_num", type=int, default=25, help="number of selected bands")
     parser.add_argument("--epochs", type=int, default=40, help="number of epochs")
      
 

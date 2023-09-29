@@ -31,23 +31,25 @@ class ConcreteVAE(nn.Module):
         self.loss_rec = loss_rec
         self.loss_com = loss_com
         self.lam1 = lam1
-        self.lam2 = lam2
-        self.decoder1 = Decoder(self.selected_num, self.hidden_dim, self.output_dim)
-        self.decoder2 = Decoder(self.input_dim-self.selected_num, self.hidden_dim, self.output_dim)
-        self.decoder = Decoder(self.input_dim, self.hidden_dim, self.output_dim)
+        self.decoder = Decoder(self.selected_num, self.hidden_dim, self.output_dim)
         if self.encoder_type == 'concrete_selector':
+            # for future exploration
             self.lam1 = 0
             self.sampled_layer = ConcreteSelector(self.input_dim, self.selected_num)
         elif self.encoder_type == 'concrete_mask':
+            # for future exploration
             self.lam1 = 0
             self.sampled_layer = ConcreteMask(self.input_dim, self.output_dim, self.selected_num)
         elif self.encoder_type == 'concrete_gates':
+            #This work only uses concrete_gates.
             self.lam1 = 0.005
             self.sampled_layer = ConcreteGates(self.input_dim, self.output_dim, self.selected_num)
         elif self.encoder_type == 'concrete_max':
+            # for future exploration
             self.lam1 = 0
             self.sampled_layer = ConcreteMax(self.input_dim, self.selected_num)
         elif self.encoder_type == 'concrete_new':
+            # for future exploration
             self.lam1 = 0.00
             self.sampled_layer = ConcreteNew(self.input_dim, self.selected_num)
     
@@ -57,12 +59,11 @@ class ConcreteVAE(nn.Module):
             sampled_x, m = self.sampled_layer(x)
             loss_penalty = torch.mean(torch.sum(m, dim=-1))
     
-        sampled_x, m = self.sampled_layer(x)
+        _, m = self.sampled_layer(x)
         selected_inds = self.sampled_layer.get_inds(num_features=self.selected_num)
     
         selected_x = x[:, selected_inds]
-        y = self.decoder(sampled_x)
-        y_select = self.decoder1(selected_x)
+        y_select = self.decoder(selected_x)
         loss_rec = self.loss_rec(x, y_select)
         loss = loss_rec + self.lam1*loss_penalty 
         return selected_x, selected_inds, loss, loss_penalty
