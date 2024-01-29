@@ -1,2 +1,2 @@
-# Hyperspectral project
+# DROPOUT CONCRETE AUTOENCODER FOR BAND SELECTION ON HSI SCENES
 Coming soon!
