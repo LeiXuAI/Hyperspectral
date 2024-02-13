@@ -5,4 +5,4 @@
 [![license](https://img.shields.io/badge/License-MIT-brightgreen.svg)](https://choosealicense.com/licenses/mit/)
 
 
-**Acknowledgment:** This code is based on the [dl_selection](https://github.com/iancovert/dl-selection.git) toolbox. 
+**Acknowledgment:** This code is based on the work [dl_selection](https://github.com/iancovert/dl-selection.git). 
