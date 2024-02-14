@@ -5,9 +5,10 @@ import matplotlib.pyplot as plt
 import torchvision.datasets as dsets
 from utils import get_activation, MSELoss
 import math
+import torch.nn.functional as F
 
 
-from encoders import ConcreteGates, ConcreteMask, ConcreteMax, ConcreteNew, ConcreteSelector
+from encoders import ConcreteGates
 
 class ConcreteVAE(nn.Module):
     def __init__(self, 
@@ -16,10 +17,7 @@ class ConcreteVAE(nn.Module):
                  hidden_dim, 
                  selected_num, 
                  loss_rec=nn.CrossEntropyLoss(),
-                 loss_com=MSELoss(),
                  lam1=0.005,
-                 lam2=1,
-                 encoder_type='concrete_gates',
                  **kwargs):
         super(ConcreteVAE, self).__init__()
 
@@ -27,31 +25,12 @@ class ConcreteVAE(nn.Module):
         self.output_dim = output_dim
         self.hidden_dim = hidden_dim 
         self.selected_num = selected_num
-        self.encoder_type = encoder_type
         self.loss_rec = loss_rec
-        self.loss_com = loss_com
+        
         self.lam1 = lam1
         self.decoder = Decoder(self.selected_num, self.hidden_dim, self.output_dim)
-        if self.encoder_type == 'concrete_selector':
-            # for future exploration
-            self.lam1 = 0
-            self.sampled_layer = ConcreteSelector(self.input_dim, self.selected_num)
-        elif self.encoder_type == 'concrete_mask':
-            # for future exploration
-            self.lam1 = 0
-            self.sampled_layer = ConcreteMask(self.input_dim, self.output_dim, self.selected_num)
-        elif self.encoder_type == 'concrete_gates':
-            #This work only uses concrete_gates.
-            self.lam1 = 0.005
-            self.sampled_layer = ConcreteGates(self.input_dim, self.output_dim, self.selected_num)
-        elif self.encoder_type == 'concrete_max':
-            # for future exploration
-            self.lam1 = 0
-            self.sampled_layer = ConcreteMax(self.input_dim, self.selected_num)
-        elif self.encoder_type == 'concrete_new':
-            # for future exploration
-            self.lam1 = 0.00
-            self.sampled_layer = ConcreteNew(self.input_dim, self.selected_num)
+        self.lam1 = 0.005
+        self.sampled_layer = ConcreteGates(self.input_dim, self.output_dim, self.selected_num)
     
     def forward(self, x, **kwargs):
         loss_penalty = 0
@@ -61,10 +40,15 @@ class ConcreteVAE(nn.Module):
     
         _, m = self.sampled_layer(x)
         selected_inds = self.sampled_layer.get_inds(num_features=self.selected_num)
-    
+        
         selected_x = x[:, selected_inds]
         y_select = self.decoder(selected_x)
         loss_rec = self.loss_rec(x, y_select)
+        '''
+        pre = F.softmax(y_select, dim=0)
+        tag = F.softmax(x, dim=0)
+        loss_rec = self.loss_rec(pre, tag)
+        '''
         loss = loss_rec + self.lam1*loss_penalty 
         return selected_x, selected_inds, loss, loss_penalty
 
@@ -97,6 +81,7 @@ class Decoder(nn.Module):
             x = self.activation(x)
             x = norm(x) 
         return torch.sigmoid(self.fc_layers[-1](x))
+        #return self.fc_layers[-1](x) 
 
     
 

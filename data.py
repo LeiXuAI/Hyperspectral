@@ -87,6 +87,14 @@ def splitraintestset(X, y, testRatio, randomState=345):
                                                         stratify=y)
     return X_train, X_test, y_train, y_test
 
+def get_input_data(data_type, x, y):
+    data_dict = {
+        "pixel": get_content_pixels(x, y),
+        "original": get_all_pixels(x, y),
+        "cubes": createImageCubes(x, y) 
+    }
+    return data_dict[data_type]
+    
 def get_content_pixels(x, y):
     y_vec = y.reshape(-1)
     x_mat = x.reshape(x.shape[0]*x.shape[1], x.shape[2])

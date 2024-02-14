@@ -22,17 +22,17 @@ def parse_args_and_config():
     parser.add_argument("--seed", type=int, default=100, help="Random seed")
     parser.add_argument("--data_type", type=str, default="pixel", help="input data type is either pixel or window ")
     parser.add_argument("--optimizer", type=str, default="Adam", help="the type of optimizer")
-    parser.add_argument("--dataset", type=str, default="IP", help="IP, SA, PU, KSC")
+    parser.add_argument("--dataset", type=str, default="KSC", help="IP, SA, PU, KSC")
     parser.add_argument("--model", type=str, default="concreteVAE", help="models")
-    parser.add_argument("--batch_size", type=int, default=1, help="batch size")
+    parser.add_argument("--batch_size", type=int, default=32, help="batch size")
     parser.add_argument("--lr", type=float, default=0.001, help="learning rate")
     parser.add_argument("--start_temperature", type=float, default=1.0, help="start temperature")
-    parser.add_argument("--end_temperature", type=float, default=0.001, help="end temperature") 
-    parser.add_argument("--input_dim", type=int, default=200, help="number of input bands, KSC:176, PU:103, SA:204, IP:200")
-    parser.add_argument("--output_dim", type=int, default=200, help="number of output bands for decoder")
-    parser.add_argument("--hidden_dim", type=int, default=[256, 256], help="dimension number of hidden layers")
-    parser.add_argument("--selected_num", type=int, default=25, help="number of selected bands")
-    parser.add_argument("--epochs", type=int, default=40, help="number of epochs")
+    parser.add_argument("--end_temperature", type=float, default=0.01, help="end temperature") 
+    parser.add_argument("--input_dim", type=int, default=176, help="number of input bands, KSC:176, PU:103, SA:204, IP:200")
+    parser.add_argument("--output_dim", type=int, default=176, help="number of output bands for decoder")
+    parser.add_argument("--hidden_dim", type=int, default=[128], help="dimension number of hidden layers")
+    parser.add_argument("--selected_num", type=int, default=15, help="number of selected bands")
+    parser.add_argument("--epochs", type=int, default=200, help="number of epochs")
      
 
     args = parser.parse_args()
@@ -70,20 +70,21 @@ def run():
 
     #loading data
     data = data.astype(np.float32)
+    #import pdb; pdb.set_trace()
     train_dataset = DataLoader(data, batch_size=args.batch_size, shuffle=True, drop_last=True)
-    
     device = "cuda" if torch.cuda.is_available() else "cpu"
     model = ConcreteVAE(args.input_dim, args.output_dim, args.hidden_dim, args.selected_num)
     total_params = sum(p.numel() for p in model.parameters())
     print(f"Number of parameters: {total_params}")
+    print(f'Number of Bands: {args.selected_num}')
     model.to(device)
     optimizer = get_optimizer(args.optimizer, model.parameters(), args.lr)
-    scheduler = optim.lr_scheduler.MultiStepLR(optimizer, milestones = [10, 25, 35], gamma=0.1)
+    scheduler = optim.lr_scheduler.MultiStepLR(optimizer, milestones = [15, 30], gamma=0.1)
 
     # Set temperature and determine rate for decreasing.
     model.sampled_layer.temperature = args.start_temperature
     r = np.power(args.end_temperature / args.start_temperature,
-                    1 / ((len(train_dataset) // args.batch_size) * args.epochs)) 
+                  1 / ((len(train_dataset) // 1) * args.epochs)) 
     
     # For tracking loss.
     best_selected_bands = []
@@ -113,4 +114,4 @@ if __name__ == "__main__":
     x, y = get_data()
     score_dic = classification_and_eval(selected_bands[-1] - 1, x, y) 
     np.savez(f'{args.dataset}_{args.selected_num}_{args.lr}.npz', selected_bands=selected_bands, score=score_dic)
-    print(f'Dataset: {args.dataset}. The learning rate is: {args.lr}. hidden dim is: {args.hidden_dim}. The result is: {score_dic}.')
+    print(f'Dataset: {args.dataset}. The learning rate is: {args.lr}. batch size is: {args.batch_size}. hidden dim is: {args.hidden_dim}. The result is: {score_dic}.')

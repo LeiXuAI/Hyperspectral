@@ -7,29 +7,15 @@ import numpy as np
 from torchvision import models
 import torch.optim as optim
 from sklearn.metrics import cohen_kappa_score, accuracy_score 
-import logging
 import os
+import time
+import logging
+from pathlib import Path
 from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier as KNN
 from sklearn.svm import SVC
 
-class ContrastLoss(nn.Module):
-    def __init__(self, loss=nn.L1Loss(), ablation=False):
-        super(ContrastLoss, self).__init__()
-        self.l1 = loss
-        self.ab = ablation
 
-    def forward(self, y_select, y, y_com):
-        d_ap, d_an = 0, 0
-        d_ap = self.l1(y_select, y)
-        if not self.ab:
-            d_an = self.l1(y_select, y_com)
-            contrastive = d_ap / (d_an + 1e-7)
-        else:
-            contrastive = d_ap
-
-        return contrastive
-    
 class MSELoss(nn.Module):
     '''MSE loss that sums over output dimensions and allows weights.'''
     def __init__(self, reduction='mean'):
@@ -175,3 +161,19 @@ def classification_and_eval(selected_bands, x, y, times=10, test_size=0.9):
         score_dic[key_[z]]['kappa'] = kappa
     return score_dic
 
+def create_logger(root_dir, des=''):
+    root_output_dir = Path(root_dir)
+    # set up logger
+    if not root_output_dir.exists():
+        print('=> creating {}'.format(root_output_dir))
+        root_output_dir.mkdir(exist_ok=True, parents=True)
+    time_str = time.strftime('%Y-%m-%d-%H-%M')
+    log_file = '{}_{}.log'.format(time_str, des)
+    final_log_file = root_output_dir / log_file
+    head = '%(asctime)-15s %(message)s'
+    logging.basicConfig(filename=str(final_log_file), format=head)
+    logger = logging.getLogger()
+    logger.setLevel(logging.INFO)
+    console = logging.StreamHandler()
+    logging.getLogger('').addHandler(console)
+    return logger
