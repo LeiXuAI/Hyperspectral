@@ -1,0 +1,21 @@
+data:
+  name: KSC
+  data_type: 'pixel'
+  input_dim: 176
+  output_dim: 176
+  selected_num: 15
+
+model:
+  start_temperature: 1.0
+  end_temperature: 0.001
+  hidden_dim: [128]
+  optimizer: "Adam"
+
+train:
+  schedule: T1
+  seed: 100
+  lr: 0.001
+  batch_size: 1
+  epochs: 40
+  log_path: '/home/xu/hyperPro/myHyper'
+

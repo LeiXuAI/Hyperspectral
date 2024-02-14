@@ -1,0 +1,19 @@
+data:
+  name: IP
+  data_type: 'pixel'
+  input_dim: 200
+  output_dim: 200
+  selected_num: 25
+
+model:
+  start_temperature: 1.0
+  end_temperature: 0.001
+  hidden_dim: [128]
+  optimizer: "Adam"
+
+train:
+  schedule: T1
+  lr: 0.001
+  batch_size: 1
+  epochs: 40
+  log_path: '/home/xu/hyperPro/myHyper'
