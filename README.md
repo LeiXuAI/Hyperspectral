@@ -13,4 +13,22 @@
 ## I. Training.
 ./train.sh --cfg configs/xxx.yaml
 
+## II. Prepare Data.
+The project folder structure should look like this:
+```commandlines
+|--myHyper
+  |-- $configs
+  |   |-- KSC_T1.yaml
+  |-- $datasets
+  |   |-- KSC_gt.mat
+  |   |-- KSC.mat
+  |-- data.py
+  |-- encoders.py
+  |-- concreteVAE.py
+  |-- utils.py
+  |-- train.py
+  |-- train.sh   
+
+
+
 
