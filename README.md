@@ -12,3 +12,5 @@
 
 ## I. Training.
 ./train.sh --cfg configs/xxx.yaml
+
+
