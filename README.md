@@ -1,6 +1,5 @@
-# DROPOUT CONCRETE AUTOENCODER FOR BAND SELECTION ON HSI SCENES
+# [Dropout Concrete Autoencoder for Band Selection on Hyperspectral Image Scenes](https://ieeexplore.ieee.org/abstract/document/10976710) 
 # PROFESSIONAL  README GENERATOR
-![paper](https://ieeexplore.ieee.org/abstract/document/10976710)
 ![Python 3.8](https://img.shields.io/badge/python-3.8.16-green.svg)
 ![Pytorch 2.1.1](https://img.shields.io/badge/Pytorch-2.1.1-blue.svg)
 [![license](https://img.shields.io/badge/License-MIT-brightgreen.svg)](https://choosealicense.com/licenses/mit/)
